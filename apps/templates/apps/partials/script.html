@@ -1,0 +1,30 @@
+{% load static %}
+
+<!-- Bootstrap core JavaScript-->
+<script src="{% static 'apps/vendor/jquery/jquery.min.js'%}"></script>
+<script src="{%static 'apps/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{% static 'apps/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+  crossorigin="anonymous"
+></script>
+<!-- Custom scripts for all pages-->
+<script src="{%static 'apps/js/sb-admin-2.min.js'%}"></script>
+
+<!-- Page level plugins -->
+<script src="{%static 'apps/vendor/chart.js/Chart.min.js'%}"></script>
+
+<!-- Page level custom scripts -->
+
+<script>
+  function confirmation() {
+    return confirm("Are you sure you want to delete this product?");
+  }
+</script>
+<script>
+  flatpickr("#date-input", {
+    dateFormat: "d/m/Y", // Set the date format to dd/mm/yyyy
+  });
+</script>
