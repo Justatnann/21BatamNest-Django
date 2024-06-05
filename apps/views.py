@@ -31,7 +31,7 @@ def login(request: HttpResponse ) -> HttpResponse:
 
             form.add_error(None, "Invalid username or password")
         else:
-           return render(request, "apps/login.html", {"form": form}) 
+           return render(request, "login.html", {"form": form}) 
     else:
         form = LoginForm()
     return render(request, "login.html", {"form": form})
@@ -90,7 +90,7 @@ def dashboard(request):
     pm = []
     for x in payment_method:
         pm.append(x.payment_method)
-    return render(request, "apps/index.html ", {'context': context, 'payment': payment_method})
+    return render(request, "index.html ", {'context': context, 'payment': payment_method})
 
 
 def product(request):
