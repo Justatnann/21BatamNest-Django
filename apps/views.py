@@ -90,7 +90,7 @@ def dashboard(request: HttpRequest) -> HttpResponse:
     pm = []
     for x in payment_method:
         pm.append(x.payment_method)
-    return render(request, "apps/index.html ", {'context': context, 'payment': payment_method})
+    return render(request, "apps/index.html", {'context': context, 'payment': payment_method})
 
 
 def product(request : HttpRequest) -> HttpResponse:
