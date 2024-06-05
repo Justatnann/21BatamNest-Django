@@ -42,7 +42,7 @@ class AddProductForm(forms.Form):
             
             Div(
                 Submit("submit", "Submit",  css_class="btn-primary btn-user"),
-                Button("cancel", "Cancel", onclick="location.href = '/apps/product'", css_class="btn-danger"),  
+                Button("cancel", "Cancel", onclick="location.href = '/product'", css_class="btn-danger"),  
                 ),
             
                 
@@ -61,7 +61,7 @@ class AddEventForm(forms.Form):
             Field("description", wrapper_class="form-group mb-4", ) ,
             Div(
                 Submit("submit", "Submit",  css_class="btn-primary btn-user"),
-                Button("cancel", "Cancel", onclick="location.href = '/apps/event'", css_class="btn-danger"),  
+                Button("cancel", "Cancel", onclick="location.href = '/event'", css_class="btn-danger"),  
                 ),
         )
 
@@ -78,7 +78,7 @@ class AddPaymentMethodForm(forms.Form):
             Field("account_number", wrapper_class="form-group mb-4", ) ,
             Div(
                 Submit("submit", "Submit",  css_class="btn-primary btn-user"),
-                Button("cancel", "Cancel", onclick="location.href = '/apps/payment'", css_class="btn-danger"),  
+                Button("cancel", "Cancel", onclick="location.href = '/payment'", css_class="btn-danger"),  
                 ),
         )
 
@@ -116,7 +116,7 @@ class AddInvoiceForm(forms.Form):
             Field("sales", wrapper_class="form-group mb-4", ) ,
             Div(
                 Submit("submit", "Submit",  css_class="btn-primary btn-user"),
-                Button("cancel", "Cancel", onclick="location.href = '/apps/invoice'", css_class="btn-danger"),  
+                Button("cancel", "Cancel", onclick="location.href = '/invoice'", css_class="btn-danger"),  
                 ),
         )
         self.fields['total_price'].widget.attrs['readonly'] = True
@@ -142,9 +142,6 @@ class PredictionForm(forms.Form):
         self.helper: FormHelper = FormHelper(self)
         self.helper.layout = Layout(
             Field("event", wrapper_class="form-group mb-4", ) ,
-           
-          
-           
             Field("date", wrapper_class="form-group mb-4", ) ,
           
         )

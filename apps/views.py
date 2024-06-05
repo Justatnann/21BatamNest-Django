@@ -414,7 +414,7 @@ def prediction_page(request: HttpRequest) -> HttpResponse:
     pf = PredictionForm()
     return render(request, "prediction.html", {"form": pf})
 
-model_path = pathlib.Path(__file__).resolve().parent.parent / 'model' / 'MachineLearningProject.pkl'
+model_path = pathlib.Path(__file__).resolve().parent.parent /'apps' / 'model' / 'MachineLearningProject.joblib'
 model = joblib.load(model_path)
 
 @csrf_exempt
