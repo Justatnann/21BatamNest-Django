@@ -31,10 +31,10 @@ def login(request: HttpResponse ) -> HttpResponse:
 
             form.add_error(None, "Invalid username or password")
         else:
-           return render(request, "login.html", {"form": form}) 
+           return render(request, "apps/login.html", {"form": form}) 
     else:
         form = LoginForm()
-    return render(request, "login.html", {"form": form})
+    return render(request, "apps/login.html", {"form": form})
 
 
 def log_out(request: HttpRequest) -> HttpResponse:
@@ -45,7 +45,7 @@ def log_out(request: HttpRequest) -> HttpResponse:
     return redirect("login")
 
 def dashboard(request):
-    
+
     auth = auth_check(request)
     print(request.user)
     if auth is not None:
@@ -90,7 +90,7 @@ def dashboard(request):
     pm = []
     for x in payment_method:
         pm.append(x.payment_method)
-    return render(request, "index.html ", {'context': context, 'payment': payment_method})
+    return render(request, "apps/index.html ", {'context': context, 'payment': payment_method})
 
 
 def product(request):
@@ -98,7 +98,7 @@ def product(request):
     auth = auth_check(request)
     if auth is not None:
         return auth
-    return render(request, "product.html", {'products': product})
+    return render(request, "apps/product.html", {'products': product})
 
 
 def create_product(request):
@@ -120,7 +120,7 @@ def create_product(request):
     
     else:
         form = AddProductForm()
-    return render(request, "add_product.html", {"form": form})
+    return render(request, "apps/add_product.html", {"form": form})
 
 
 def update_product(request: HttpRequest, id) -> HttpResponse:
@@ -145,7 +145,7 @@ def update_product(request: HttpRequest, id) -> HttpResponse:
             'price': product.price,
 
         })
-    return render(request, "update_product.html", {"form": form})   
+    return render(request, "apps/update_product.html", {"form": form})   
 
 def delete_product(request: HttpRequest, id) -> HttpResponse:
     auth = auth_check(request)
@@ -154,7 +154,7 @@ def delete_product(request: HttpRequest, id) -> HttpResponse:
     
     product = Product.objects.get(id=id)
     product.delete()
-    return redirect("product")
+    return redirect("apps/product")
 
 def event(request: HttpRequest) -> HttpResponse:
     events = Event.objects.all()
@@ -162,7 +162,7 @@ def event(request: HttpRequest) -> HttpResponse:
     if auth is not None:
         return auth
     
-    return render(request, "event.html", {'event': events,})
+    return render(request, "apps/event.html", {'event': events,})
 
 def create_event(request: HttpRequest) -> HttpResponse:
     auth = auth_check(request)
@@ -181,7 +181,7 @@ def create_event(request: HttpRequest) -> HttpResponse:
     
     else:
         form = AddEventForm()
-    return render(request, "add_event.html", {"form": form})
+    return render(request, "apps/add_event.html", {"form": form})
 
 def update_event(request: HttpRequest, id) -> HttpResponse:
     auth = auth_check(request)
@@ -202,7 +202,7 @@ def update_event(request: HttpRequest, id) -> HttpResponse:
             'event_name': event.event_name,
             'description': event.description,
         })
-    return render(request, "update_event.html", {"form": form}) 
+    return render(request, "apps/update_event.html", {"form": form}) 
 
 def delete_event(request: HttpRequest, id) -> HttpResponse:
     auth = auth_check(request)
@@ -219,7 +219,7 @@ def payment_method(request: HttpRequest) -> HttpResponse:
     if auth is not None:
         return auth
     
-    return render(request, "payment.html", {'payment': payment_method,})
+    return render(request, "apps/payment.html", {'payment': payment_method,})
 
 def create_payment_method(request: HttpRequest) -> HttpResponse:
     auth = auth_check(request)
@@ -238,7 +238,7 @@ def create_payment_method(request: HttpRequest) -> HttpResponse:
     
     else:
         form = AddPaymentMethodForm()
-    return render(request, "add_payment.html", {"form": form})
+    return render(request, "apps/add_payment.html", {"form": form})
 
 def update_payment_method(request: HttpRequest, id) -> HttpResponse:
     auth = auth_check(request)
@@ -259,7 +259,7 @@ def update_payment_method(request: HttpRequest, id) -> HttpResponse:
             'payment_method': payment_method.payment_method,
             'account_number': payment_method.account_number,
         })
-    return render(request, "update_payment.html", {"form": form})
+    return render(request, "apps/update_payment.html", {"form": form})
 
 def delete_payment_method(request: HttpRequest, id) -> HttpResponse:
     auth = auth_check(request)
@@ -293,7 +293,7 @@ def invoice(request: HttpRequest) -> HttpResponse:
     if auth is not None:
         return auth
     
-    return render(request, "invoice.html", {'invoice': listinvoice,})
+    return render(request, "apps/invoice.html", {'invoice': listinvoice,})
 
 def create_invoice(request: HttpRequest) -> HttpResponse:
     auth = auth_check(request)
@@ -337,7 +337,7 @@ def create_invoice(request: HttpRequest) -> HttpResponse:
         products = Product.objects.all()
         product_data = {product.id: product.price for product in products}
         form = AddInvoiceForm()
-    return render(request, "add_invoice.html", {"product":products, "product_data": product_data, "form": form})
+    return render(request, "apps/add_invoice.html", {"product":products, "product_data": product_data, "form": form})
 
 def update_invoice(request: HttpRequest, id) -> HttpResponse:
     auth = auth_check(request)
@@ -371,7 +371,7 @@ def update_invoice(request: HttpRequest, id) -> HttpResponse:
         })
         products = Product.objects.all()
         product_data = {product.id: product.price for product in products}
-    return render(request, "update_invoice.html", {"product":products, "product_data": product_data, "form": form})
+    return render(request, "apps/update_invoice.html", {"product":products, "product_data": product_data, "form": form})
 
 
 def view_invoice(request: HttpRequest, id) -> HttpResponse:
@@ -394,7 +394,7 @@ def view_invoice(request: HttpRequest, id) -> HttpResponse:
         'sales': invoice.sales,
     }
     print(invoice.payment_method)
-    return render(request, "detail_invoice.html", {"invoice": listinvoice})
+    return render(request, "apps/detail_invoice.html", {"invoice": listinvoice})
 
 
 def delete_invoice(request: HttpRequest, id) -> HttpResponse:
@@ -412,7 +412,7 @@ def prediction_page(request: HttpRequest) -> HttpResponse:
         return auth
     
     pf = PredictionForm()
-    return render(request, "prediction.html", {"form": pf})
+    return render(request, "apps/prediction.html", {"form": pf})
 
 model_path = pathlib.Path(__file__).resolve().parent.parent /'apps' / 'model' / 'MachineLearningProject.joblib'
 model = joblib.load(model_path)
