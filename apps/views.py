@@ -44,7 +44,7 @@ def log_out(request: HttpRequest) -> HttpResponse:
     auth_logout(request)
     return redirect("login")
 
-def dashboard(request):
+def dashboard(request: HttpRequest) -> HttpResponse:
 
     auth = auth_check(request)
     print(request.user)
@@ -93,7 +93,7 @@ def dashboard(request):
     return render(request, "apps/index.html ", {'context': context, 'payment': payment_method})
 
 
-def product(request):
+def product(request : HttpRequest) -> HttpResponse:
     product = Product.objects.all()
     auth = auth_check(request)
     if auth is not None:
@@ -101,7 +101,7 @@ def product(request):
     return render(request, "apps/product.html", {'products': product})
 
 
-def create_product(request):
+def create_product(request  : HttpRequest) -> HttpResponse:
     
     auth = auth_check(request)
     if auth is not None:
