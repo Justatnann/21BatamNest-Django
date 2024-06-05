@@ -93,7 +93,8 @@ DATABASES = {
         'NAME': os.environ.get("DBNAME"),
         'USER': os.environ.get("DBUSERNAME"),
         'PASSWORD': os.environ.get("DBPASSWORD"),
-        'HOST': os.environ.get("DBHOST")
+        'HOST': os.environ.get("DBHOST"),
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
