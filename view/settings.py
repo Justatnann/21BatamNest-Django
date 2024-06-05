@@ -83,11 +83,17 @@ WSGI_APPLICATION = 'view.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+USE_PSQL = os.getenv("USE_POSTGRESQL", True) == "True"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    } if not USE_PSQL else {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("DBNAME"),
+        'USER': os.environ.get("DBUSERNAME"),
+        'PASSWORD': os.environ.get("DBPASSWORD"),
+        'HOST': os.environ.get("DBHOST")
     }
 }
 
