@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %} {% include "partials/header.html" %}
+  {% load static %} {% include "apps/partials/header.html" %}
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
@@ -87,7 +87,7 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
-    {% include "partials/logout.html"%}
+    {% include "apps/partials/logout.html"%}
 
     <!-- Bootstrap core JavaScript-->
   </body>
@@ -144,5 +144,5 @@
         });
     }
   </script>
-  {%include "partials/script.html"%}
+  {%include "apps/partials/script.html"%}
 </html>

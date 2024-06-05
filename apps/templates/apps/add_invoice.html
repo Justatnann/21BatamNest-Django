@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static crispy_forms_tags %} {% include "partials/header.html" %}
+  {% load static crispy_forms_tags %} {% include "apps/partials/header.html" %}
   <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -70,7 +70,7 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
-    {% include "partials/logout.html"%}
+    {% include "apps/partials/logout.html"%}
 
     <!-- Bootstrap core JavaScript-->
     <script>
@@ -97,6 +97,6 @@
           .addEventListener("change", updateTotalPrice);
       });
     </script>
-    {%include "partials/script.html"%}
+    {%include "apps/partials/script.html"%}
   </body>
 </html>
