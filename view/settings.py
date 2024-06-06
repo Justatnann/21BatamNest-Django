@@ -150,5 +150,6 @@ LOGIN_URL = '/login'
 LOGIN_EXEMPT_URLS = [
     r'^$',  # Exempt root URL
     r'^predict/$',
+    r'^/$',
     # Add other patterns here if needed
 ]
