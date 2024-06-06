@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %} {% include "apps/partials/header.html" %}
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+  />
+  <body id="page-top">
+    {% load static crispy_forms_tags %}
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      {% include "apps/partials/sidebar.html" %}
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          {% include 'apps/partials/guest_navbar.html' %}
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+              {% comment %}
+              <a
+                href="#"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                ><i class="fas fa-download fa-sm text-white-50"></i> Generate
+                Report</a
+              >
+              {% endcomment %}
+            </div>
+
+            <!-- Content Row -->
+
+            <div class="card-body">
+              <!-- Area Chart -->
+
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">Product</h6>
+                </div>
+                <div class="card-body">
+                  <table class="table" id="datatablesSimple">
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for x in data.product%}
+                      <tr>
+                        <td>{{ x.product_name }}</td>
+                        <td>{{ x.description }}</td>
+                        <td>{{ x.price }}</td>
+                        {% endfor%}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Card Body -->
+              </div>
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">Event</h6>
+                </div>
+                <div class="card-body">
+                  <table class="table" id="datatablesSimple1">
+                    <thead>
+                      <tr>
+                        <th>Event</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for x in data.event%}
+                      <tr>
+                        <td>{{ x.event_name }}</td>
+                        <td>{{ x.description }}</td>
+
+                        {% endfor%}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Card Body -->
+              </div>
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
+                </div>
+                <div class="card-body">
+                  <table class="table" id="datatablesSimple2">
+                    <thead>
+                      <tr>
+                        <th>Invoice Id</th>
+                        <th>Product</th>
+                        <th>Date</th>
+                        <th>Quantity</th>
+                        <th>Discount</th>
+                        <th>Total Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for x in data.invoice%}
+                      <tr>
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.product.product_name }}</td>
+                        <td>{{ x.date }}</td>
+                        <td>{{ x.quantity }}</td>
+                        <td>{{ x.discount }}</td>
+                        <td>{{ x.total_price }}</td>
+                        {% endfor%}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Card Body -->
+              </div>
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Payment Method
+                  </h6>
+                </div>
+                <div class="card-body">
+                  <table class="table" id="datatablesSimple3">
+                    <thead>
+                      <tr>
+                        <th>Payment Method</th>
+                        <th>Account Number</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for x in data.pm%}
+                      <tr>
+                        <td>{{ x.payment_method }}</td>
+                        <td>{{ x.account_number }}</td>
+                        {% endfor%}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- Card Body -->
+              </div>
+
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Invoice List
+                  </h6>
+                </div>
+                <div class="card-body">
+                  <div class="container">
+                    <h1>Product Demand Prediction</h1>
+                    <form id="predictionForm" method="post">
+                      {% csrf_token %} {% crispy form %}
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="makePrediction()"
+                      >
+                        Predict
+                      </button>
+                    </form>
+                    <hr />
+                    <h2 class="mt-5">Prediction Result:</h2>
+                    <ul id="predictionResult"></ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Card Body -->
+            </div>
+            <div class="col-xl-5 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Project Information
+                  </h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <p><strong>Kelompok 10 -- 21 Batam Nest</strong></p>
+
+                  <ul>
+                    Kelvin
+                  </ul>
+                  <ul>
+                    Rayson Wijaya
+                  </ul>
+                  <ul>
+                    Wira Erlangga ulratama
+                  </ul>
+                  <ul>
+                    Ihsan Havin
+                  </ul>
+                  <ul>
+                    Atnan Ari Anderson
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Area Chart -->
+        </div>
+        {% include "apps/partials/footer.html" %}
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+
+      <!-- End of Footer -->
+
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include "apps/partials/loginmodal.html"%}
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      flatpickr("#date-input", {
+        dateFormat: "d/m/Y", // Set the date format to dd/mm/yyyy
+      });
+    </script>
+    <script>
+      function makePrediction() {
+        console.log("Making prediction...");
+        const formData = new FormData(
+          document.getElementById("predictionForm")
+        );
+        const features = {
+          event: formData.get("event"),
+          date: formData.get("date"),
+        };
+
+        fetch("/predict/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(features),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Received prediction data from backend:", data);
+            console.log("Type of data:", typeof data);
+
+            // Assuming the predictions are inside a key in the object
+            const predictions = data.prediction_result; // Adjust based on the actual structure
+            console.log("Predictions:", predictions);
+            console.log("Type of predictions:", typeof predictions);
+            console.log("Predictions isArray:", Array.isArray(predictions));
+            console.log("Predictions length:", predictions.length);
+
+            // Clear previous results
+            const predictionResultContainer =
+              document.getElementById("predictionResult");
+            predictionResultContainer.innerHTML = "";
+
+            // Iterate over the array and display each prediction
+            for (let i = 0; i < predictions.length; i++) {
+              const prediction = predictions[i];
+              const listItem = document.createElement("li");
+              listItem.textContent = `Item: ${prediction.Item}, Predicted Demand: ${prediction.Predicted_Demand}`;
+              predictionResultContainer.appendChild(listItem);
+              console.log("Logging prediction item:", prediction.Item);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+    {%include "apps/partials/script.html"%}
+  </body>
+</html>

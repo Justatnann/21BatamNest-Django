@@ -22,6 +22,7 @@ def active_tab(get_response):
 EXEMPT_URLS = [re.compile(settings.LOGIN_URL.lstrip('/'))]
 if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
     EXEMPT_URLS += [re.compile(url) for url in settings.LOGIN_EXEMPT_URLS]
+EXEMPT_URLS.append(re.compile(r'^$'))  # Ensure root URL is exempt
 
 
 class AuthMiddleware():
