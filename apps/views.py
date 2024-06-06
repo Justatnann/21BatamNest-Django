@@ -18,22 +18,11 @@ def index(request: HttpRequest)-> HttpRequest:
     auth = auth_check(request)
     if auth is not None:
 
-        product = Product.objects.all()
-        event = Event.objects.all()
-        invoice = Invoice.objects.all()
-        pm = Payment_Method.objects.all()
-
-   
-        data = {
-            'product': product,
-            'event': event,
-            'invoice': invoice,
-            'pm': pm
-        }
+       
         form = PredictionForm()
 
-        print(data)
-        return render(request, "apps/guest.html", {'data': data, 'form': form})
+        
+        return render(request, "apps/guest.html", { 'form': form})
     return redirect('dashboard')
 
 def login(request: HttpResponse ) -> HttpResponse:

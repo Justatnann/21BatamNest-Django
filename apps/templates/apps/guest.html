@@ -10,7 +10,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      {% include "apps/partials/sidebar.html" %}
+      {% comment %} {% include "apps/partials/sidebar.html" %} {% endcomment %}
       <!-- End of Sidebar -->
 
       <!-- Content Wrapper -->
@@ -19,211 +19,109 @@
         <div id="content">
           <!-- Topbar -->
           {% include 'apps/partials/guest_navbar.html' %}
+          <section class="hero bg-primary text-white text-center py-5">
+            <div class="container">
+              <div class="display-4">
+                <strong>Welcome to 21 Batam Nest</strong>
+              </div>
+              <p class="lead">
+                Website made for managing invoice and predicting products.
+              </p>
+              <a href="#learnmore" class="btn btn-lg btn-light">Learn More</a>
+            </div>
+          </section>
 
           <!-- Begin Page Content -->
-          <div class="container-fluid">
-            <!-- Page Heading -->
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-              {% comment %}
-              <a
-                href="#"
-                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                ><i class="fas fa-download fa-sm text-white-50"></i> Generate
-                Report</a
-              >
-              {% endcomment %}
-            </div>
-
-            <!-- Content Row -->
-
-            <div class="card-body">
-              <!-- Area Chart -->
-
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary">Product</h6>
+          <section class="features py-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 text-center">
+                  <div class="feature-box p-4">
+                    <i class="fas fa-file-alt fa-5x text-primary mb-3"></i>
+                    <h3>Invoice Management</h3>
+                    <p>
+                      Simplify billing process with invoice management system.
+                      Easily create, send, and track invoices, ensuring tracked
+                      records.
+                    </p>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <table class="table" id="datatablesSimple">
-                    <thead>
-                      <tr>
-                        <th>Product</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for x in data.product%}
-                      <tr>
-                        <td>{{ x.product_name }}</td>
-                        <td>{{ x.description }}</td>
-                        <td>{{ x.price }}</td>
-                        {% endfor%}
-                      </tr>
-                    </tbody>
-                  </table>
+                <div class="col-md-4 text-center">
+                  <div class="feature-box p-4">
+                    <i class="fas fa-boxes fa-5x text-primary mb-3"></i>
+                    <h3>Product Listing</h3>
+                    <p>
+                      Showcase products effectively with comprehensive product
+                      listing tools. Organize, and display the inventory.
+                    </p>
+                  </div>
                 </div>
-                <!-- Card Body -->
-              </div>
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary">Event</h6>
-                </div>
-                <div class="card-body">
-                  <table class="table" id="datatablesSimple1">
-                    <thead>
-                      <tr>
-                        <th>Event</th>
-                        <th>Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for x in data.event%}
-                      <tr>
-                        <td>{{ x.event_name }}</td>
-                        <td>{{ x.description }}</td>
-
-                        {% endfor%}
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- Card Body -->
-              </div>
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
-                </div>
-                <div class="card-body">
-                  <table class="table" id="datatablesSimple2">
-                    <thead>
-                      <tr>
-                        <th>Invoice Id</th>
-                        <th>Product</th>
-                        <th>Date</th>
-                        <th>Quantity</th>
-                        <th>Discount</th>
-                        <th>Total Price</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for x in data.invoice%}
-                      <tr>
-                        <td>{{ x.id }}</td>
-                        <td>{{ x.product.product_name }}</td>
-                        <td>{{ x.date }}</td>
-                        <td>{{ x.quantity }}</td>
-                        <td>{{ x.discount }}</td>
-                        <td>{{ x.total_price }}</td>
-                        {% endfor%}
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- Card Body -->
-              </div>
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Payment Method
-                  </h6>
-                </div>
-                <div class="card-body">
-                  <table class="table" id="datatablesSimple3">
-                    <thead>
-                      <tr>
-                        <th>Payment Method</th>
-                        <th>Account Number</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for x in data.pm%}
-                      <tr>
-                        <td>{{ x.payment_method }}</td>
-                        <td>{{ x.account_number }}</td>
-                        {% endfor%}
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- Card Body -->
-              </div>
-
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Invoice List
-                  </h6>
-                </div>
-                <div class="card-body">
-                  <div class="container">
-                    <h1>Product Demand Prediction</h1>
-                    <form id="predictionForm" method="post">
-                      {% csrf_token %} {% crispy form %}
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="makePrediction()"
-                      >
-                        Predict
-                      </button>
-                    </form>
-                    <hr />
-                    <h2 class="mt-5">Prediction Result:</h2>
-                    <ul id="predictionResult"></ul>
+                <div class="col-md-4 text-center">
+                  <div class="feature-box p-4">
+                    <i class="fas fa-brain fa-5x text-primary mb-3"></i>
+                    <h3>Prediction</h3>
+                    <p>
+                      Utilize analytics to predict trends and make informed
+                      decisions. The prediction tools help to anticipate product
+                      demands so we can optimize inventory, and drive business
+                      growth.
+                    </p>
                   </div>
                 </div>
               </div>
-              <!-- Card Body -->
             </div>
-            <div class="col-xl-5 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Project Information
-                  </h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <p><strong>Kelompok 10 -- 21 Batam Nest</strong></p>
-
-                  <ul>
-                    Kelvin
-                  </ul>
-                  <ul>
-                    Rayson Wijaya
-                  </ul>
-                  <ul>
-                    Wira Erlangga ulratama
-                  </ul>
-                  <ul>
-                    Ihsan Havin
-                  </ul>
-                  <ul>
-                    Atnan Ari Anderson
-                  </ul>
+          </section>
+          <section class="cta bg-dark text-white text-center py-5">
+            <div class="container">
+              <h2>Try Our Prediction Features!</h2>
+              <p>Use the Feature Right Now and Then!</p>
+            </div>
+          </section>
+          <section class="cta bg-dark text-white py-5">
+            <div class="container">
+              <div class="card-body">
+                <div class="container">
+                  <h1>Product Demand Prediction</h1>
+                  <form id="predictionForm" method="post">
+                    {% csrf_token %} {% crispy form %}
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      onclick="makePrediction()"
+                    >
+                      Predict
+                    </button>
+                  </form>
+                  <hr />
+                  <h2 class="mt-5">Prediction Result:</h2>
+                  <ul id="predictionResult"></ul>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+
+          <section class="features py-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 text-center">
+                  <div class="feature-box p-4"></div>
+                </div>
+                <div class="col-md-4 text-center" id="learnmore">
+                  <div class="feature-box p-4">
+                    <i class="fas fa-phone fa-5x text-primary mb-3"></i>
+                    <h3>Contact Out Team <strong>EDA</strong></h3>
+                    <p>
+                      Atnan Ari Anderson, Rayson Wijaya, Wira Erlangga Pratama,
+                      Kelvin, Ihsan Havin
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4 text-center">
+                  <div class="feature-box p-4"></div>
+                </div>
+              </div>
+            </div>
+          </section>
           <!-- Area Chart -->
         </div>
         {% include "apps/partials/footer.html" %}
