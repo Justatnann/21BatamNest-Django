@@ -153,3 +153,8 @@ LOGIN_EXEMPT_URLS = [
     r'^/$',
     # Add other patterns here if needed
 ]
+
+# "settings.py"
+
+SESSION_COOKIE_AGE = 360 # 3 minutes. "1209600(2 weeks)" by default
+SESSION_SAVE_EVERY_REQUEST = True # "False" by default
