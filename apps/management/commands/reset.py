@@ -23,7 +23,7 @@ class Command(BaseCommand):
                 cursor.execute(f"TRUNCATE TABLE {table} RESTART IDENTITY CASCADE")
 
     def handle(self, *args, **options):
-        if not settings.USE_POSTGRES:
+        if not settings.USE_PSQL:
             self.handle_sqlite()
         else:
             self.handle_postgres()
