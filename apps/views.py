@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 import pathlib
 from django.http import HttpResponse, HttpRequest
-from .models import Product, Event, Payment_Method, Invoice
+from .models import Product, Event, Payment_Method, Invoice, Salesman
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 import json
 import pandas as pd
@@ -11,7 +11,7 @@ from datetime import datetime
 from django.db.models import Sum, Count
 from django.forms.models import model_to_dict
 import numpy as np
-from .forms import LoginForm, AddProductForm, AddEventForm, AddPaymentMethodForm, AddInvoiceForm, PredictionForm
+from .forms import LoginForm, AddProductForm, AddEventForm, AddPaymentMethodForm, AddInvoiceForm, PredictionForm, SalesmanForm
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def index(request: HttpRequest)-> HttpRequest:
@@ -479,6 +479,66 @@ def prediction(request: HttpRequest) -> HttpResponse:
 
         return JsonResponse({'prediction_result': prediction_result})
     return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+def salesman(request: HttpRequest) -> HttpResponse:
+    auth = auth_check(request)
+    if auth is not None:
+        return auth
+    sales = Salesman.objects.all()
+    return render(request, "apps/salesman.html", {'sales': sales})
+
+def create_salesman(request: HttpRequest) -> HttpResponse:
+    auth = auth_check(request)
+    if auth is not None:
+        return auth
+    
+    if request.method == "POST":
+        form = SalesmanForm(request.POST)
+        if form.is_valid():
+            salesman = Salesman(
+                name=request.POST['name'],
+                age=request.POST['age'], 
+                number=request.POST['number'], 
+)
+            salesman.save()
+            return redirect("salesman")
+    
+    else:
+        form = SalesmanForm()
+    return render(request, "apps/add_salesman.html", {"form": form})
+
+def update_salesman(request: HttpRequest, id) -> HttpResponse:
+    auth = auth_check(request)
+    if auth is not None:
+        return auth
+    
+    salesman = Salesman.objects.get(id=id)
+    if request.method == "POST":
+        form = SalesmanForm(request.POST)
+        if form.is_valid():
+            salesman.name = request.POST['name']
+            salesman.age = request.POST['age']
+            salesman.number = request.POST['number']
+            
+            salesman.save()
+            return redirect("salesman")
+    else:
+        form = SalesmanForm(initial={
+            'name': salesman.name,
+            'age': salesman.age,
+            'number': salesman.number,
+
+        })
+    return render(request, "apps/update_salesman.html", {"form": form})
+
+def delete_salesman(request: HttpRequest, id) -> HttpResponse:
+    auth = auth_check(request)
+    if auth is not None:
+        return auth
+    
+    salesman = Salesman.objects.get(id=id)
+    salesman.delete()
+    return redirect("salesman")
 
 def auth_check(request):
     

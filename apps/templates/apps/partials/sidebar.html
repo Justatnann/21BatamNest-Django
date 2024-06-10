@@ -31,11 +31,9 @@
       <i class="fas fa-chart-bar"></i>
       <span>Dashboard</span></a
     >
-    {% endif %}
-
-    <!-- Nav Item - Pages Collapse Menu -->
   </li>
-
+  {% endif %}
+  <!--  -->
   {% if request.active_path == 'product'%}
   <li class="nav-item active">
     <a class="nav-link" href="/product">
@@ -49,11 +47,9 @@
       <i class="fas fa-box"></i>
       <span>Product</span></a
     >
-    {% endif %}
-
-    <!-- Nav Item - Pages Collapse Menu -->
   </li>
-
+  {% endif %}
+  <!--  -->
   {% if request.active_path == 'event'%}
   <li class="nav-item active">
     <a class="nav-link" href="/event">
@@ -67,11 +63,9 @@
       <i class="far fa-calendar-alt"></i>
       <span>Event</span></a
     >
-    {% endif %}
-
-    <!-- Nav Item - Pages Collapse Menu -->
   </li>
-
+  {% endif %}
+  <!--  -->
   {% if request.active_path == 'invoice'%}
   <li class="nav-item active">
     <a class="nav-link" href="/invoice">
@@ -85,10 +79,10 @@
       <i class="fas fa-cart-plus"></i>
       <span>Invoice</span></a
     >
-    {% endif %}
-
-    <!-- Nav Item - Pages Collapse Menu -->
   </li>
+  {% endif %}
+
+  <!--  -->
 
   {% if request.active_path == 'payment'%}
   <li class="nav-item active">
@@ -103,9 +97,28 @@
       <i class="fab fa-cc-visa"></i>
       <span>Payment</span></a
     >
-    {% endif %} {% if request.active_path == 'prediction'%}
   </li>
+  {% endif %}
+  <!--  -->
 
+  {% if request.active_path == 'salesman'%}
+  <li class="nav-item active">
+    <a class="nav-link" href="/salesman">
+      <i class="fas fa-address-card"></i>
+      <span>Salesman</span></a
+    >
+  </li>
+  {% else %}
+  <li class="nav-item">
+    <a class="nav-link" href="/salesman">
+      <i class="fas fa-address-card"></i>
+      <span>Salesman</span></a
+    >
+  </li>
+  {% endif %}
+  <!--  -->
+
+  {% if request.active_path == 'prediction'%}
   <li class="nav-item active">
     <a class="nav-link" href="/prediction">
       <i class="fa fa-random"></i>
@@ -118,11 +131,10 @@
       <i class="fa fa-random"></i>
       <span>Predict</span></a
     >
-    {% endif %}
 
     <!-- Nav Item - Pages Collapse Menu -->
   </li>
-
+  {% endif %}
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block" />
 

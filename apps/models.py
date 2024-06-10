@@ -26,3 +26,9 @@ class Invoice(models.Model):
 class Payment_Method(models.Model):
     payment_method = models.CharField(max_length=100)
     account_number = models.CharField(max_length=100)
+
+class Salesman(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    number = models.CharField(max_length=100)
+    

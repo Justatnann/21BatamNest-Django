@@ -21,7 +21,7 @@
             <div
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
-              <h1 class="h3 mb-0 text-gray-800">Payment Method</h1>
+              <h1 class="h3 mb-0 text-gray-800">Salesman</h1>
             </div>
 
             <!-- Content Row -->
@@ -29,38 +29,41 @@
               <div class="col-lg mb-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Payment Method
-                    </h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Salesman</h6>
                   </div>
                   <div class="card-body">
-                    <a href="/payment/addpayment" class="btn btn-primary mb-3">
-                      Add Payment Method
+                    <a
+                      href="/salesman/addsalesman"
+                      class="btn btn-primary mb-3"
+                    >
+                      Add Salesman
                     </a>
                     <div class="text">
                       <!-- style="width: 25rem" -->
                       <table class="" id="datatablesSimple">
                         <thead>
                           <tr>
-                            <th>Payment Method</th>
-                            <th>Account</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Phone Number</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tdata>
-                          {% for p in payment %}
+                          {% for s in sales %}
                           <tr>
-                            <td>{{ p.payment_method }}</td>
-                            <td>{{ p.account_number }}</td>
+                            <td>{{ s.name }}</td>
+                            <td>{{ s.age }}</td>
+                            <td>{{ s.number }}</td>
                             <td>
                               <a
-                                href="{% url 'update_payment' p.id %}"
+                                href="{% url 'update_salesman' s.id %}"
                                 class="btn btn-primary"
                               >
                                 <i class="fas fa-edit"></i>
                               </a>
                               <a
-                                href="{% url 'delete_payment' p.id %}"
+                                href="{% url 'delete_salesman' s.id %}"
                                 class="btn btn-danger"
                                 onclick="return confirmation();"
                               >

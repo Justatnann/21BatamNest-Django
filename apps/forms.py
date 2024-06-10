@@ -5,7 +5,7 @@ from crispy_bootstrap5.bootstrap5 import Field
 
 from view.settings import DATE_INPUT_FORMATS
 
-from .models import Event, Payment_Method, Product
+from .models import Event, Payment_Method, Product, Salesman
 
 
 class LoginForm(forms.Form):
@@ -100,9 +100,12 @@ class AddInvoiceForm(forms.Form):
         self.fields['event'] = forms.CharField(widget=forms.Select(choices=events, attrs={'class': 'select form-control'}))
 
         payment_methods = list(Payment_Method.objects.all().values_list("id", "payment_method"))
-
         payment_methods.insert(0, ('', '-'))
         self.fields['payment_method'] = forms.CharField(widget=forms.Select(choices=payment_methods, attrs={'class': 'select form-control'}))
+
+        sales = list(Salesman.objects.all().values_list("id", "name"))
+        sales.insert(0, ('', '-'))
+        self.fields['sales'] = forms.CharField(widget=forms.Select(choices=sales, attrs={'class': 'select form-control'}))
 
         self.helper: FormHelper = FormHelper(self)
         self.helper.layout = Layout(
@@ -144,4 +147,23 @@ class PredictionForm(forms.Form):
             Field("event", wrapper_class="form-group mb-4", ) ,
             Field("date", wrapper_class="form-group mb-4", ) ,
           
+        )
+
+class SalesmanForm(forms.Form):
+    name = forms.CharField(label="Name", max_length=100, required=True)
+    age = forms.IntegerField(label="Age", required=True)
+    number = forms.CharField(label="Number", max_length=100, required=True)
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.helper: FormHelper = FormHelper(self)
+        self.helper.layout = Layout(
+            Field("name", wrapper_class="form-group mb-4", ) ,
+            Field("age", wrapper_class="form-group mb-4", ) ,
+            Field("number", wrapper_class="form-group mb-4", ) ,
+            Div(
+                Submit("submit", "Submit",  css_class="btn-primary btn-user"),
+                Button("cancel", "Cancel", onclick="location.href = '/salesman'", css_class="btn-danger"),  
+            ),  
         )

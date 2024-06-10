@@ -4,7 +4,7 @@ from django.conf import settings
 
 class Command(BaseCommand):
     help = "Reset the database"
-    tables = ["apps_product", "apps_event", "apps_invoice", "apps_payment_method"]
+    tables = ["apps_invoice", "apps_event", "apps_product", "apps_payment_method"]
 
     def sqlite_delete_table(self, table: str):
         with connection.cursor() as cursor:
