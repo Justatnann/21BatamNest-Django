@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static crispy_forms_tags %} {% include "apps/partials/header.html" %}
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      {% include "apps/partials/sidebar.html" %}
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          {% include 'apps/partials/navbar.html' %}
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800">Salesman</h1>
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+              <div class="col mb-4">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      Update Salesman
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="text">
+                      <!-- style="width: 25rem" -->
+                      <form method="POST">
+                        {% csrf_token %} {% crispy form %}
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        {% include "apps/partials/footer.html" %}
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include "apps/partials/logout.html"%}
+
+    <!-- Bootstrap core JavaScript-->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var productData = {{ product_data|safe }};
+        function updateTotalPrice() {
+          var selectedProduct = document.getElementById('{{ form.product.id_for_label }}').value;
+          console.log(selectedProduct);
+          var quantity = parseFloat(document.getElementById('{{ form.quantity.id_for_label }}').value) || 0;
+          var discount = parseFloat(document.getElementById('{{ form.discount.id_for_label }}').value) || 0;
+          var totalPriceField = document.getElementById('{{ form.total_price.id_for_label }}');
+
+          // Assuming you have a unit price somewhere in your context or you can fetch it
+          var unitPrice = productData[selectedProduct] || 0;
+          var totalPrice = (quantity * unitPrice) - discount;
+          totalPriceField.value = totalPrice.toFixed(2); // replace this with the actual unit price if available
+        }
+
+        document
+          .getElementById("{{ form.quantity.id_for_label }}")
+          .addEventListener("change", updateTotalPrice);
+        document
+          .getElementById("{{ form.discount.id_for_label }}")
+          .addEventListener("change", updateTotalPrice);
+      });
+    </script>
+    {%include "apps/partials/script.html"%}
+  </body>
+</html>
