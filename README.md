@@ -46,7 +46,7 @@ Submit bug reports and feature suggestions, or track changes to
       
 ## Team
 
-- Atnan A. Anderson - [@4tnan](https://www.instagram.com/4tnan/) - Developer :man_technologist:
+- Atnan A. Anderson - [@4tnan](https://www.instagram.com/justatnann_/) - Developer :man_technologist:
 - Wira E. Pratama - Designer :writing_hand:
 - Rayson Wijaya - Designer :writing_hand:
 - Kelvin - Designer :writing_hand:
