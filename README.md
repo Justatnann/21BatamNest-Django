@@ -3,7 +3,7 @@
 The Web app is to assist User in managing invoice and sales, also to assist predicting demand of products.
 
 Submit bug reports and feature suggestions, or track changes to
-[My Instagram](https://www.instagram.com/4tnan/).
+[My Instagram](https://www.instagram.com/justatnann_/).
 
 ## Table of contents
 
@@ -46,7 +46,7 @@ Submit bug reports and feature suggestions, or track changes to
       
 ## Team
 
-- Atnan A. Anderson - [@4tnan](https://www.instagram.com/justatnann_/) - Developer :man_technologist:
+- Atnan A. Anderson - [Instagram (@justatnann_)](https://www.instagram.com/justatnann_/) - Developer :man_technologist:
 - Wira E. Pratama - Designer :writing_hand:
 - Rayson Wijaya - Designer :writing_hand:
 - Kelvin - Designer :writing_hand:
